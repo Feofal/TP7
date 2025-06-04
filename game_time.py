@@ -16,6 +16,7 @@ class GameElapsedTime:
         :return:
         """
         self.elapsed_time = time.time() - self.start_time
+        return self.elapsed_time
 
     def get_time_string(self):
         """

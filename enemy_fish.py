@@ -23,7 +23,6 @@ FISH_SIZE_TO_SCALE = {
     'L': 0.40,
     'XL': 0.60,
 }
-
 FISH_SCALE = list(FISH_SIZE_TO_SCALE.keys())
 
 """
@@ -56,10 +55,11 @@ class EnemyFish(FishAnimation):
         # Randomize the fish color and size
         fish_color = randint(1, 5)
         fish_scale = choices(FISH_SCALE, weights=FISH_SCALE_WEIGHT, k=1)
+        self.fish_size = FISH_SIZE_TO_SCALE[fish_scale[0]]
         flipped = False if direction == Direction.LEFT else True
 
         super().__init__(
-            FISH_COLOR_TO_PATH[fish_color], 
+            FISH_COLOR_TO_PATH[fish_color],
             flipped, 
             FISH_SIZE_TO_SCALE[fish_scale[0]]
         )
@@ -70,7 +70,6 @@ class EnemyFish(FishAnimation):
             self.change_x = EnemyFish.MEDIUM_ENEMY_SPEED
         else:
             self.change_x = EnemyFish.LARGE_ENEMY_SPEED
-
         self.direction = direction
         self.center_x = spawn_point[0]
         self.center_y = spawn_point[1]
